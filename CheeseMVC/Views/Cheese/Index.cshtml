@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<CheeseMVC.Models.Cheese>
+@{
+    //Layout = null;
+    ViewData["Title"] = "List Cheese";
+    var count = 0; 
+
+    
+}
+
+<h1>My Cheeses</h1>
+
+
+@*<form action="/cheese/add" method="post">
+        <input name="cheese" value="" id="cheese" type="text" />
+        <input type="submit" />
+    </form>*@
+@if (!Model.Any())
+{
+    <p>No cheeses in the bag.</p>
+}
+@*<ul>
+        @foreach (string cheese in ViewBag.cheeses)
+        {
+            <li>@cheese</li>
+
+        }
+    </ul>*@
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Remove(X)</th>
+    </tr>
+    @*@foreach (KeyValuePair<string, string> cheese in ViewBag.cheeses)
+        {
+            <tr>
+                <td>@cheese.Key</td>
+                <td>@cheese.Value</td>
+            </tr>
+        }*@
+
+    @foreach (var cheese in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@cheese.Name</td>
+            <td>@cheese.Description</td>
+            <td>@cheese.Category.Name</td>
+            <td><a class="btn btn-warning" href="Cheese/Edit?Id=@cheese.ID">Edit</a></td>
+            <td><a class="btn btn-danger" href="Cheese/Delete?Id=@cheese.ID">Delete</a></td>
+            @*<td><a href="@Url.Action("Query",new {Id=Context.Request.Query[@cheese.CheeseId]})">GO</a></td>*@
+            @*<td><a href="@Url.Action("Delete",new {Id=Context.Request.Query[@cheese.CheeseId]})">GO</a></td>*@
+
+        </tr>
+    }
+</table>
+<p><a asp-controller="Cheese" asp-action="Add">Add cheese</a></p>
+<p><a asp-controller="Cheese" asp-action="Remove">Remove cheese</a></p>
+
