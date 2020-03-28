@@ -70,31 +70,5 @@ namespace CheeseMVC.Controllers
 
         }
 
-       
-
-        public IActionResult Category(int Id) 
-        {
-            if (Id == 0) 
-            {
-                return Redirect("/Category/Index");
-            }
-
-            CheeseCategory theCategory = _dbContext.Categories.
-                Include(cat => cat.Cheeses).
-                Single(cat => cat.ID == Id);
-
-            // To query from the 
-            // Other side of the relationship
-
-            /*
-            ICollection<Cheese> theChesses = _dbContext.Cheeses.
-                Include(c=>c.Category).
-                Where(c.CategoryID == Id).ToList();
-            */
-            ViewBag.Title = "Cheeses in Category: " + theCategory.Name;
-            return View("Index", theCategory.Cheeses);
-        }
-
-
     }
 }
