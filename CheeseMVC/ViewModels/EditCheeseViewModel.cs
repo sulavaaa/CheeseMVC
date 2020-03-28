@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CheeseMVC.ViewModels
 {
-    //public class EditCheeseViewModel: AddCheeseViewModel
-    //{
+    public class EditCheeseViewModel: AddCheeseViewModel
+    {
         
-    //    [HiddenInput]
-    //    public int ID { get; set; }
-    //}
+       [HiddenInput]
+       public int ID { get; set; }
+    }
 }
